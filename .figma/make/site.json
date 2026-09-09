@@ -1,10 +1,15 @@
 {
-  "description": "Create stunning portfolios effortlessly with this web app, designed for professionals and creatives to showcase their work and attract opportunities.",
+  "title": "Ришат — Full-Stack Developer | Astana",
+  "description": "Full-Stack разработчик из Астаны. Разработка современных сайтов, веб-сервисов, frontend, backend, API и AI-интеграций.",
+  "language": "ru",
+  "icons": {
+    "icon": "/favicon.svg"
+  },
   "robots": {
     "index": false
   },
   "accessibility": {
-    "addBypassLinks": false,
+    "addBypassLinks": true,
     "ignoreReducedMotion": false
   }
 }

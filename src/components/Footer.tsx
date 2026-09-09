@@ -1,5 +1,10 @@
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const links = [
+    { label: "GitHub" },
+    { label: "Telegram", href: "https://t.me/LazerRising" },
+    { label: "Email" },
+  ];
 
   return (
     <footer
@@ -13,6 +18,7 @@ export default function Footer() {
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         {/* Top row */}
         <div
+          className="footer-top"
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -21,31 +27,18 @@ export default function Footer() {
             borderBottom: "1px solid rgba(244,242,237,0.08)",
           }}
         >
-          <div style={{ display: "flex", gap: "32px" }}>
-            {[
-              { label: "GitHub", href: "https://github.com/your_username" },
-              { label: "Telegram", href: "https://t.me/your_username" },
-              { label: "Email", href: "mailto:your@email.com" },
-            ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: "10px",
-                  letterSpacing: "0.14em",
-                  color: "rgba(244,242,237,0.35)",
-                  textDecoration: "none",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(244,242,237,0.8)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(244,242,237,0.35)")}
-              >
-                {link.label.toUpperCase()}
-              </a>
-            ))}
+          <div className="footer-links" style={{ display: "flex", gap: "32px" }}>
+            {links.map((link) =>
+              link.href ? (
+                <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="footer-link">
+                  {link.label.toUpperCase()}
+                </a>
+              ) : (
+                <span key={link.label} className="footer-link footer-link--disabled">
+                  {link.label.toUpperCase()} · SOON
+                </span>
+              ),
+            )}
           </div>
 
           <a
@@ -67,6 +60,7 @@ export default function Footer() {
 
         {/* Meta row */}
         <div
+          className="footer-meta"
           style={{
             display: "flex",
             justifyContent: "space-between",

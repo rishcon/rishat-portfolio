@@ -34,7 +34,7 @@ export default function CustomCursor() {
       if (ringRef.current) {
         ringRef.current.style.width = "56px";
         ringRef.current.style.height = "56px";
-        ringRef.current.style.borderColor = "#111111";
+        ringRef.current.style.borderColor = "#ffffff";
         ringRef.current.style.opacity = "0.6";
       }
     };
@@ -43,7 +43,7 @@ export default function CustomCursor() {
       if (ringRef.current) {
         ringRef.current.style.width = "36px";
         ringRef.current.style.height = "36px";
-        ringRef.current.style.borderColor = "#111111";
+        ringRef.current.style.borderColor = "#ffffff";
         ringRef.current.style.opacity = "0.35";
       }
     };
@@ -59,6 +59,10 @@ export default function CustomCursor() {
 
     return () => {
       document.removeEventListener("mousemove", onMove);
+      links.forEach((el) => {
+        el.removeEventListener("mouseenter", onEnterLink);
+        el.removeEventListener("mouseleave", onLeaveLink);
+      });
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -67,31 +71,33 @@ export default function CustomCursor() {
     <>
       <div
         ref={dotRef}
+        className="custom-cursor custom-cursor--dot"
         style={{
           position: "fixed",
           top: 0,
           left: 0,
           width: "5px",
           height: "5px",
-          background: "#111111",
+          background: "#ffffff",
           borderRadius: "50%",
           pointerEvents: "none",
           zIndex: 9999,
           transform: "translate(-50%, -50%)",
           marginLeft: "-2.5px",
           marginTop: "-2.5px",
-          mixBlendMode: "multiply",
+          mixBlendMode: "difference",
         }}
       />
       <div
         ref={ringRef}
+        className="custom-cursor custom-cursor--ring"
         style={{
           position: "fixed",
           top: 0,
           left: 0,
           width: "36px",
           height: "36px",
-          border: "1px solid #111111",
+          border: "1px solid #ffffff",
           borderRadius: "50%",
           pointerEvents: "none",
           zIndex: 9998,
@@ -99,6 +105,7 @@ export default function CustomCursor() {
           marginLeft: "-18px",
           marginTop: "-18px",
           opacity: 0.35,
+          mixBlendMode: "difference",
           transition: "width 0.3s cubic-bezier(0.22,1,0.36,1), height 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.3s",
         }}
       />

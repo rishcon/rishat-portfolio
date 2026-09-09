@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function Header() {
+export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -9,6 +9,15 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
 
   const navLinks = [
     { label: "Проекты", href: "#projects" },
@@ -34,6 +43,7 @@ export default function Header() {
         }}
       >
         <div
+          className="site-header-inner"
           style={{
             maxWidth: "1440px",
             margin: "0 auto",
@@ -103,17 +113,19 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#contact"
+            <button
+              type="button"
+              onClick={onOpenBrief}
               style={{
                 fontFamily: "'DM Mono', monospace",
                 fontWeight: 400,
                 fontSize: "11px",
                 letterSpacing: "0.1em",
                 color: "#111111",
-                textDecoration: "none",
                 border: "1px solid #111111",
                 padding: "8px 18px",
+                background: "transparent",
+                cursor: "pointer",
                 transition: "background 0.25s, color 0.25s",
               }}
               onMouseEnter={(e) => {
@@ -126,7 +138,7 @@ export default function Header() {
               }}
             >
               Обсудить проект
-            </a>
+            </button>
           </nav>
 
           {/* Mobile hamburger */}
@@ -141,6 +153,8 @@ export default function Header() {
             }}
             className="show-mobile"
             aria-label="Меню"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
               <span
@@ -180,6 +194,8 @@ export default function Header() {
 
       {/* Mobile menu */}
       <div
+        id="mobile-menu"
+        aria-hidden={!menuOpen}
         style={{
           position: "fixed",
           top: 0,
@@ -199,7 +215,7 @@ export default function Header() {
         }}
       >
         <nav style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
-          {[...navLinks, { label: "Обсудить проект", href: "#contact" }].map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href + link.label}
               href={link.href}
@@ -216,6 +232,27 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false);
+              onOpenBrief();
+            }}
+            style={{
+              fontFamily: "'Manrope', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(28px, 8vw, 48px)",
+              letterSpacing: "-0.02em",
+              color: "#111111",
+              background: "none",
+              border: 0,
+              padding: 0,
+              textAlign: "left",
+              cursor: "pointer",
+            }}
+          >
+            Обсудить проект
+          </button>
         </nav>
       </div>
 

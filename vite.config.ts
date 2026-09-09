@@ -1,17 +1,19 @@
-import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
+import { defineConfig, loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
 
 import siteConfiguration from './.figma/make/site.json'
+import { ProjectBriefError, sendProjectBrief } from './server/telegram'
 
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
+  const env = { ...process.env, ...loadEnv(mode, process.cwd(), '') }
   // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === 'development'
 
   return {
-    base: process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
+    base: env.FIGMA_PUBLIC_URL ? `${env.FIGMA_PUBLIC_URL}/` : '/',
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,
@@ -23,6 +25,7 @@ export default defineConfig(({ mode }) => {
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
+      projectBriefDevApi(env),
     ],
     resolve: {
       alias: {
@@ -30,17 +33,63 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      host: process.env.FIGMA_DEV_SERVER_HOST || '0.0.0.0',
-      port: parseInt(process.env.PORT || '8443'),
+      host: env.FIGMA_DEV_SERVER_HOST || '0.0.0.0',
+      port: parseInt(env.PORT || '8443'),
       strictPort: true,
       watch: { ignored: ['**/.figma/**'] },
     },
     preview: {
-      host: process.env.FIGMA_DEV_SERVER_HOST || '0.0.0.0',
-      port: parseInt(process.env.PORT || '8443'),
+      host: env.FIGMA_DEV_SERVER_HOST || '0.0.0.0',
+      port: parseInt(env.PORT || '8443'),
     },
   }
 })
+
+function projectBriefDevApi(env: Record<string, string | undefined>): Plugin {
+  return {
+    name: 'project-brief-dev-api',
+    apply: 'serve',
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        if (req.url?.split('?')[0] !== '/api/project-brief') return next()
+
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        if (req.method !== 'POST') {
+          res.statusCode = 405
+          res.setHeader('Allow', 'POST')
+          res.end(JSON.stringify({ ok: false, message: 'Метод не поддерживается.' }))
+          return
+        }
+
+        try {
+          let body = ''
+          for await (const chunk of req) {
+            body += chunk
+            if (body.length > 32_768) {
+              res.statusCode = 413
+              res.end(JSON.stringify({ ok: false, message: 'Слишком большой запрос.' }))
+              return
+            }
+          }
+
+          const payload = JSON.parse(body || '{}')
+          await sendProjectBrief(payload, {
+            token: env.TELEGRAM_BOT_TOKEN,
+            chatId: env.TELEGRAM_CHAT_ID,
+          })
+          res.statusCode = 200
+          res.end(JSON.stringify({ ok: true }))
+        } catch (error) {
+          res.statusCode = error instanceof ProjectBriefError ? error.status : 500
+          const message = error instanceof ProjectBriefError
+            ? error.message
+            : 'Не удалось отправить заявку. Попробуйте позже.'
+          res.end(JSON.stringify({ ok: false, message }))
+        }
+      })
+    },
+  }
+}
 
 type FigmaSiteConfiguration = {
   title?: string

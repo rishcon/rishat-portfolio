@@ -52,6 +52,7 @@ export default function Process() {
       }}
     >
       <div
+        className="section-heading-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 2fr",
@@ -94,6 +95,7 @@ export default function Process() {
         {steps.map((step, i) => (
           <div
             key={step.number}
+            className="process-row"
             style={{
               display: "grid",
               gridTemplateColumns: "80px 1fr 1fr",
@@ -131,6 +133,7 @@ export default function Process() {
               {step.title}
             </h3>
             <p
+              className="process-desc"
               style={{
                 fontFamily: "'Manrope', sans-serif",
                 fontWeight: 400,

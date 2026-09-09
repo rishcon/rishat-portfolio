@@ -58,6 +58,7 @@ function CapabilityRow({
 
   return (
     <div
+      className="capability-row"
       ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -145,6 +146,7 @@ export default function Capabilities() {
       }}
     >
       <div
+        className="section-heading-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 2fr",

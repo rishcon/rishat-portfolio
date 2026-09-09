@@ -114,6 +114,7 @@ export default function Stack() {
         }}
       >
         <div
+          className="section-heading-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 2fr",

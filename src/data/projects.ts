@@ -23,8 +23,7 @@ export const projects: Project[] = [
       "Концепт современного сайта частной стоматологии в Астане. Акцент на доверии, услугах, врачах и записи пациентов.",
     tags: ["React", "TypeScript", "Responsive UI", "UX/UI", "Frontend"],
     url: "https://liberty-stom-blue.vercel.app/",
-    image:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1400&h=900&fit=crop&auto=format&q=80",
+    image: "/projects/liberty-stom.webp",
     imageAlt: "Liberty Stom — сайт стоматологической клиники",
     accent: "#E8E4DC",
   },
@@ -38,8 +37,7 @@ export const projects: Project[] = [
       "Современный сайт стоматологической клиники с чистой визуальной системой, понятной структурой услуг и акцентом на конверсию.",
     tags: ["React", "TypeScript", "UI Development", "Responsive", "Landing"],
     url: "https://aisdent-j8gc.vercel.app/",
-    image:
-      "https://images.unsplash.com/photo-1588776814546-ec7e3b1ab2a4?w=1400&h=900&fit=crop&auto=format&q=80",
+    image: "/projects/aisdent.webp",
     imageAlt: "Aisdent — стоматологическая клиника",
     accent: "#EAE8E1",
   },
@@ -53,8 +51,7 @@ export const projects: Project[] = [
       "Премиальный сайт для beauty-бренда в Астане: услуги, прайс, фотографии, отзывы и онлайн-запись.",
     tags: ["React", "TypeScript", "Editorial Design", "Responsive", "SEO"],
     url: "https://impala-psi.vercel.app/",
-    image:
-      "https://images.unsplash.com/photo-1560066984-138daaa19eb6?w=1400&h=900&fit=crop&auto=format&q=80",
+    image: "/projects/impala-beauty.jpg",
     imageAlt: "Impala Beauty Brand — beauty-студия",
     accent: "#E6E1D8",
   },

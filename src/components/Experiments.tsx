@@ -38,6 +38,7 @@ export default function Experiments() {
         }}
       >
         <div
+          className="section-heading-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 2fr",

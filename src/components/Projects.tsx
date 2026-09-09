@@ -163,6 +163,7 @@ function ProjectItem({ project, index }: { project: (typeof projects)[0]; index:
 
       {/* Image side */}
       <div
+        className="section-heading-grid"
         style={{
           order: isMobile ? 1 : index % 2 === 0 ? 2 : 1,
           position: "relative",

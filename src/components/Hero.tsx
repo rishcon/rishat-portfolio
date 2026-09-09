@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
 
-export default function Hero() {
+export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
   const heroRef = useRef<HTMLElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [loaded, setLoaded] = useState(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    setTimeout(() => setLoaded(true), 100);
+    const timeout = window.setTimeout(() => setLoaded(true), 100);
+    return () => window.clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
@@ -86,7 +87,7 @@ export default function Hero() {
           {/* Giant headline */}
           <div
             style={{
-              transform: `translate(${mousePos.x * -8}px, ${mousePos.y * -4}px)`,
+              transform: isMobile ? "none" : `translate(${mousePos.x * -8}px, ${mousePos.y * -4}px)`,
               transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1)",
               willChange: "transform",
             }}
@@ -169,22 +170,26 @@ export default function Hero() {
               >
                 Смотреть проекты <span>↓</span>
               </a>
-              <a
-                href="#contact"
+              <button
+                type="button"
+                onClick={onOpenBrief}
                 style={{
                   fontFamily: "'DM Mono', monospace",
                   fontWeight: 400,
                   fontSize: "11px",
                   letterSpacing: "0.1em",
                   color: "#707070",
-                  textDecoration: "none",
+                  background: "none",
+                  border: 0,
+                  padding: 0,
+                  cursor: "pointer",
                   transition: "color 0.2s",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#111111")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#707070")}
               >
                 Обсудить проект →
-              </a>
+              </button>
             </div>
           </div>
         </div>
