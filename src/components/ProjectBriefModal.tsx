@@ -112,7 +112,7 @@ export default function ProjectBriefModal({ open, onClose }: ProjectBriefModalPr
             <p className="brief-modal__eyebrow">ЗАЯВКА ОТПРАВЛЕНА</p>
             <h2 id={titleId}>СПАСИБО.</h2>
             <p>
-              Бриф доставлен в Telegram. Я изучу задачу и свяжусь с вами по указанному контакту.
+              Бриф отправлен!. Я изучу задачу и свяжусь с вами по указанному контакту.
             </p>
             <button type="button" className="brief-modal__primary" onClick={onClose}>
               ПОНЯТНО
