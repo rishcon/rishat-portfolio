@@ -54,4 +54,4 @@ pnpm preview
 
 ## Перед публикацией
 
-Telegram уже подключён. В `src/components/Contact.tsx` и `src/components/Footer.tsx` оставлены намеренные плейсхолдеры WhatsApp, email и GitHub — замените их, когда появятся реальные ссылки. Превью кейсов хранятся локально в `public/projects/`.
+Telegram, WhatsApp и email уже подключены. В `src/components/Footer.tsx` оставлен плейсхолдер GitHub — замените его, когда появится реальная ссылка. Превью кейсов хранятся локально в `public/projects/`.

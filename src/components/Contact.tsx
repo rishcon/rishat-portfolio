@@ -3,8 +3,8 @@ import { useIsMobile } from "../hooks/useIsMobile";
 
 const contacts = [
   { label: "Telegram", href: "https://t.me/LazerRising", display: "@LazerRising" },
-  { label: "WhatsApp", display: "Контакт будет добавлен" },
-  { label: "Email", display: "Контакт будет добавлен" },
+  { label: "WhatsApp", href: "https://wa.me/77066834200", display: "+7 706 683 42 00" },
+  { label: "Email", href: "mailto:kaatrr12150305@gmail.com", display: "kaatrr12150305@gmail.com" },
 ];
 
 export default function Contact({ onOpenBrief }: { onOpenBrief: () => void }) {

@@ -3,7 +3,8 @@ export default function Footer() {
   const links = [
     { label: "GitHub" },
     { label: "Telegram", href: "https://t.me/LazerRising" },
-    { label: "Email" },
+    { label: "WhatsApp", href: "https://wa.me/77066834200" },
+    { label: "Email", href: "mailto:kaatrr12150305@gmail.com" },
   ];
 
   return (
