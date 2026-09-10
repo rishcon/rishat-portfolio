@@ -29,6 +29,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
     <section
       ref={heroRef}
       id="hero"
+      className="site-container"
       style={{
         minHeight: "100svh",
         display: "grid",
@@ -101,6 +102,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
                 }}
               >
                 <h1
+                  className="hero-title-line"
                   style={{
                     fontFamily: "'Manrope', sans-serif",
                     fontWeight: 800,
@@ -197,6 +199,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
 
       {/* Bottom metadata strip */}
       <div
+        className="hero-meta"
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -209,7 +212,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
           transition: "opacity 0.8s cubic-bezier(0.22,1,0.36,1) 0.7s",
         }}
       >
-        <div style={{ display: "flex", gap: "40px" }}>
+        <div className="hero-meta__items" style={{ display: "flex", gap: "40px" }}>
           {[
             ["ASTANA", "KAZAKHSTAN"],
             ["AVAILABLE", "FOR PROJECTS"],
@@ -244,6 +247,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
           ))}
         </div>
         <span
+          className="hero-meta__role"
           style={{
             fontFamily: "'DM Mono', monospace",
             fontSize: "10px",

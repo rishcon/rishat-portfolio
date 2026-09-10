@@ -25,6 +25,7 @@ export default function Intro() {
     <section
       ref={ref}
       id="intro"
+      className="site-container intro-grid"
       style={{
         maxWidth: "1440px",
         margin: "0 auto",

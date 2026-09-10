@@ -138,6 +138,7 @@ export default function Capabilities() {
     <section
       ref={ref}
       id="capabilities"
+      className="site-container"
       style={{
         maxWidth: "1440px",
         margin: "0 auto",

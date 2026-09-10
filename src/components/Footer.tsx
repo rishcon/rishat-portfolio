@@ -9,6 +9,7 @@ export default function Footer() {
 
   return (
     <footer
+      className="site-footer"
       style={{
         background: "#111111",
         borderTop: "1px solid rgba(244,242,237,0.08)",
@@ -16,7 +17,7 @@ export default function Footer() {
         overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
+      <div className="site-container" style={{ maxWidth: "1440px", margin: "0 auto" }}>
         {/* Top row */}
         <div
           className="footer-top"
@@ -70,6 +71,7 @@ export default function Footer() {
           }}
         >
           <span
+            className="footer-wordmark"
             style={{
               fontFamily: "'DM Mono', monospace",
               fontSize: "10px",

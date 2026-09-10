@@ -43,7 +43,7 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
         }}
       >
         <div
-          className="site-header-inner"
+          className="site-container site-header-inner"
           style={{
             maxWidth: "1440px",
             margin: "0 auto",
@@ -257,11 +257,11 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
           .hidden-mobile { display: none !important; }
           .show-mobile { display: block !important; }
         }
-        @media (min-width: 769px) {
+        @media (min-width: 901px) {
           .show-mobile { display: none !important; }
         }
       `}</style>

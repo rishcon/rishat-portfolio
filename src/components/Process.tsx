@@ -44,6 +44,7 @@ export default function Process() {
     <section
       ref={ref}
       id="process"
+      className="site-container"
       style={{
         maxWidth: "1440px",
         margin: "0 auto",
