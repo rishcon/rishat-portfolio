@@ -68,11 +68,11 @@ export default function Process() {
             fontFamily: "'DM Mono', monospace",
             fontSize: "11px",
             letterSpacing: "0.14em",
-            color: "#707070",
+            color: "#686868",
             fontWeight: 300,
           }}
         >
-          05 / PROCESS
+          04 / PROCESS
         </span>
         <h2
           className="reveal reveal-delay-1"
@@ -112,7 +112,7 @@ export default function Process() {
                 fontFamily: "'DM Mono', monospace",
                 fontSize: "clamp(28px, 4vw, 56px)",
                 fontWeight: 300,
-                color: "#D8D5CE",
+                color: "#8A8882",
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
               }}
@@ -139,7 +139,7 @@ export default function Process() {
                 fontFamily: "'Manrope', sans-serif",
                 fontWeight: 400,
                 fontSize: "clamp(14px, 1.1vw, 16px)",
-                color: "#707070",
+                color: "#686868",
                 margin: 0,
                 lineHeight: 1.6,
                 paddingTop: "4px",

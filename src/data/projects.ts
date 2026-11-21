@@ -24,7 +24,7 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "Responsive UI", "UX/UI", "Frontend"],
     url: "https://liberty-stom-blue.vercel.app/",
     image: "/projects/liberty-stom.webp",
-    imageAlt: "Liberty Stom — сайт стоматологической клиники",
+    imageAlt: "Liberty Stom, сайт стоматологической клиники",
     accent: "#E8E4DC",
   },
   {
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "UI Development", "Responsive", "Landing"],
     url: "https://aisdent-j8gc.vercel.app/",
     image: "/projects/aisdent.webp",
-    imageAlt: "Aisdent — стоматологическая клиника",
+    imageAlt: "Aisdent, стоматологическая клиника",
     accent: "#EAE8E1",
   },
   {
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "Editorial Design", "Responsive", "SEO"],
     url: "https://impala-psi.vercel.app/",
     image: "/projects/impala-beauty.jpg",
-    imageAlt: "Impala Beauty Brand — beauty-студия",
+    imageAlt: "Impala Beauty Brand, beauty-студия",
     accent: "#E6E1D8",
   },
 ];

@@ -19,8 +19,6 @@ export default function Experiments() {
     return () => observer.disconnect();
   }, []);
 
-  const doubled = [...keywords, ...keywords];
-
   return (
     <section
       ref={ref}
@@ -54,11 +52,11 @@ export default function Experiments() {
               fontFamily: "'DM Mono', monospace",
               fontSize: "11px",
               letterSpacing: "0.14em",
-              color: "rgba(244,242,237,0.4)",
+              color: "#AAA8A3",
               fontWeight: 300,
             }}
           >
-            06 / BEYOND
+            05 / BEYOND
           </span>
           <h2
             className="reveal reveal-delay-1"
@@ -84,7 +82,7 @@ export default function Experiments() {
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 400,
             fontSize: "clamp(15px, 1.3vw, 20px)",
-            color: "rgba(244,242,237,0.55)",
+            color: "#AAA8A3",
             lineHeight: 1.65,
             margin: "0 0 clamp(48px, 8vh, 80px) 0",
             maxWidth: "520px",
@@ -94,27 +92,25 @@ export default function Experiments() {
         </p>
       </div>
 
-      {/* Moving keywords */}
-      <div style={{ overflow: "hidden", paddingBottom: "clamp(60px, 10vh, 120px)" }}>
+      <div className="site-container" style={{ paddingBottom: "clamp(60px, 10vh, 120px)" }}>
         <div
-          className="float-keywords"
+          className="keyword-field"
           style={{
-            display: "inline-flex",
-            gap: "0",
-            whiteSpace: "nowrap",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "12px clamp(24px, 4vw, 64px)",
           }}
         >
-          {doubled.map((kw, i) => (
+          {keywords.map((kw) => (
             <span
-              key={i}
+              key={kw}
               style={{
                 fontFamily: "'Manrope', sans-serif",
                 fontWeight: 800,
                 fontSize: "clamp(48px, 8vw, 120px)",
                 letterSpacing: "-0.03em",
                 color: "transparent",
-                WebkitTextStroke: "1px rgba(244,242,237,0.15)",
-                paddingRight: "clamp(32px, 5vw, 80px)",
+                WebkitTextStroke: "1px #77746F",
                 lineHeight: 1,
               }}
             >

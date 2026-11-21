@@ -6,6 +6,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [loaded, setLoaded] = useState(false);
   const isMobile = useIsMobile();
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const timeout = window.setTimeout(() => setLoaded(true), 100);
@@ -41,7 +42,6 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
         paddingTop: "100px",
       }}
     >
-      {/* Top row: status + year */}
       <div
         style={{
           display: "flex",
@@ -50,9 +50,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
           paddingBottom: "0",
         }}
       >
-        {/* Main headline block */}
         <div style={{ flex: 1 }}>
-          {/* Status indicator */}
           <div
             style={{
               display: "flex",
@@ -64,7 +62,6 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
             }}
           >
             <span
-              className="pulse-dot"
               style={{
                 width: "7px",
                 height: "7px",
@@ -78,14 +75,13 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
                 fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 letterSpacing: "0.12em",
-                color: "#707070",
+                color: "#686868",
               }}
             >
               Открыт к новым проектам
             </span>
           </div>
 
-          {/* Giant headline */}
           <div
             style={{
               transform: isMobile ? "none" : `translate(${mousePos.x * -8}px, ${mousePos.y * -4}px)`,
@@ -123,7 +119,6 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
             ))}
           </div>
 
-          {/* Supporting copy + CTAs */}
           <div
             style={{
               display: "grid",
@@ -141,18 +136,18 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
                 fontFamily: "'Manrope', sans-serif",
                 fontWeight: 400,
                 fontSize: "clamp(15px, 1.4vw, 20px)",
-                color: "#707070",
+                color: "#686868",
                 lineHeight: 1.55,
                 margin: 0,
                 maxWidth: "420px",
               }}
             >
-              Проектирую и разрабатываю современные сайты и веб-сервисы — от интерфейса до backend и запуска.
+              Проектирую и разрабатываю сайты и веб-сервисы: от интерфейса до backend и запуска.
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start" }}>
               <a
-                href="#projects"
+                href="#capabilities"
                 style={{
                   fontFamily: "'Manrope', sans-serif",
                   fontWeight: 700,
@@ -164,13 +159,13 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
                   alignItems: "center",
                   gap: "8px",
                   borderBottom: "1px solid #111111",
-                  paddingBottom: "2px",
+                  minHeight: "44px",
                   transition: "gap 0.3s cubic-bezier(0.22,1,0.36,1)",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.gap = "14px")}
                 onMouseLeave={(e) => (e.currentTarget.style.gap = "8px")}
               >
-                Смотреть проекты <span>↓</span>
+                Что я могу сделать <span aria-hidden="true">↓</span>
               </a>
               <button
                 type="button"
@@ -180,24 +175,24 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
                   fontWeight: 400,
                   fontSize: "11px",
                   letterSpacing: "0.1em",
-                  color: "#707070",
+                  color: "#686868",
                   background: "none",
                   border: 0,
+                  minHeight: "44px",
                   padding: 0,
                   cursor: "pointer",
                   transition: "color 0.2s",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#111111")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#707070")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#686868")}
               >
-                Обсудить проект →
+                Обсудить проект
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom metadata strip */}
       <div
         className="hero-meta"
         style={{
@@ -216,7 +211,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
           {[
             ["ASTANA", "KAZAKHSTAN"],
             ["AVAILABLE", "FOR PROJECTS"],
-            ["2026", ""],
+            [String(currentYear), ""],
           ].map(([top, bottom]) => (
             <div key={top} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               <span
@@ -236,7 +231,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
                     fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     letterSpacing: "0.14em",
-                    color: "#707070",
+                    color: "#686868",
                     fontWeight: 300,
                   }}
                 >
@@ -252,7 +247,7 @@ export default function Hero({ onOpenBrief }: { onOpenBrief: () => void }) {
             fontFamily: "'DM Mono', monospace",
             fontSize: "10px",
             letterSpacing: "0.14em",
-            color: "#707070",
+            color: "#686868",
           }}
         >
           FULL-STACK DEVELOPER

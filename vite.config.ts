@@ -6,7 +6,7 @@ import path from 'node:path'
 import siteConfiguration from './.figma/make/site.json'
 import { ProjectBriefError, sendProjectBrief } from './server/telegram'
 
-// Vite config — https://vitejs.dev/config/
+// Vite config: https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = { ...process.env, ...loadEnv(mode, process.cwd(), '') }
   // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
@@ -245,8 +245,8 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
             },
             {
               tag: 'a',
-              attrs: { class: 'figma-bypass-link', href: '#root' },
-              children: 'Skip to content',
+              attrs: { class: 'figma-bypass-link', href: '#main-content' },
+              children: 'Перейти к содержимому',
               injectTo: 'body-prepend',
             },
           )

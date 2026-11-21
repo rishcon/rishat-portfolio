@@ -39,3 +39,17 @@ This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin con
 - Use double quotes for strings containing apostrophes (`"We're here to help"`), or escape them in single-quoted strings. An unescaped apostrophe in a single-quoted string breaks the build.
 - Ensure JSX tags are closed and braces are balanced.
 - Export components as default exports.
+
+## Anti-Slop
+
+This project uses Anti-Slop as a quality filter. Before starting work, read the core skill at `.codex/skills/antislop/SKILL.md`, resolve its usage mode, and follow its Delivery Gate before delivering substantial changes.
+
+Load the matching skill when the task touches its concern:
+
+- UI and visual work: `.codex/skills/antislop-ui/SKILL.md`
+- Code comments: `.codex/skills/antislop-code/SKILL.md`
+- Copy and interface text: `.codex/skills/antislop-copywriting/SKILL.md`
+- Accessibility and interaction states: `.codex/skills/antislop-human/SKILL.md`
+- Mobile and responsive layout: `.codex/skills/antislop-layoutmobile/SKILL.md`
+
+Treat Anti-Slop as a filter, not a source of visual direction. For this portfolio, use the existing project brief at `src/imports/pasted_text/developer-portfolio-brief.md` as the established design direction unless the user supplies a newer direction.

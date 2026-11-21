@@ -2,7 +2,6 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Intro from "./components/Intro";
-import Projects from "./components/Projects";
 import Capabilities from "./components/Capabilities";
 import Stack from "./components/Stack";
 import Process from "./components/Process";
@@ -19,10 +18,9 @@ export default function App() {
     <>
       <CustomCursor />
       <Header onOpenBrief={() => setBriefOpen(true)} />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero onOpenBrief={() => setBriefOpen(true)} />
         <Intro />
-        <Projects />
         <Capabilities />
         <Stack />
         <Process />

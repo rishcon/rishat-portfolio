@@ -37,14 +37,13 @@ export default function Intro() {
         borderTop: "1px solid #D8D5CE",
       }}
     >
-      {/* Label */}
       <div className="reveal">
         <span
           style={{
             fontFamily: "'DM Mono', monospace",
             fontSize: "11px",
             letterSpacing: "0.14em",
-            color: "#707070",
+            color: "#686868",
             fontWeight: 300,
           }}
         >
@@ -52,7 +51,6 @@ export default function Intro() {
         </span>
       </div>
 
-      {/* Content */}
       <div>
         <blockquote
           className="reveal reveal-delay-1"
@@ -77,7 +75,7 @@ export default function Intro() {
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 400,
             fontSize: "clamp(15px, 1.3vw, 18px)",
-            color: "#707070",
+            color: "#686868",
             lineHeight: 1.65,
             margin: "0 0 20px 0",
             maxWidth: "560px",
@@ -92,7 +90,7 @@ export default function Intro() {
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 400,
             fontSize: "clamp(15px, 1.3vw, 18px)",
-            color: "#707070",
+            color: "#686868",
             lineHeight: 1.65,
             margin: 0,
             maxWidth: "560px",

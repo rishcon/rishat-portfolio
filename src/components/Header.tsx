@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -12,16 +14,48 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
 
   useEffect(() => {
     if (!menuOpen) return;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const focusTimeout = window.setTimeout(() => {
+      menuRef.current?.querySelector<HTMLElement>("a, button")?.focus();
+    }, 0);
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        return;
+      }
+      if (event.key !== "Tab" || !menuRef.current || !menuButtonRef.current) return;
+
+      const focusable = [
+        menuButtonRef.current,
+        ...Array.from(menuRef.current.querySelectorAll<HTMLElement>("a, button")),
+      ];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
-    document.addEventListener("keydown", closeOnEscape);
-    return () => document.removeEventListener("keydown", closeOnEscape);
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.clearTimeout(focusTimeout);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      menuButtonRef.current?.focus();
+    };
   }, [menuOpen]);
 
   const navLinks = [
-    { label: "Проекты", href: "#projects" },
     { label: "Обо мне", href: "#intro" },
+    { label: "Услуги", href: "#capabilities" },
     { label: "Стек", href: "#stack" },
     { label: "Контакты", href: "#contact" },
   ];
@@ -54,8 +88,7 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
             transition: "padding 0.4s cubic-bezier(0.22,1,0.36,1)",
           }}
         >
-          {/* Wordmark */}
-          <a href="#" style={{ textDecoration: "none" }}>
+          <a href="#hero" style={{ textDecoration: "none", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
               <span
                 style={{
@@ -75,7 +108,7 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
                   fontWeight: 300,
                   fontSize: "9px",
                   letterSpacing: "0.14em",
-                  color: "#707070",
+                  color: "#686868",
                   lineHeight: 1.2,
                   marginTop: "3px",
                 }}
@@ -85,7 +118,6 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
             </div>
           </a>
 
-          {/* Desktop Nav */}
           <nav
             style={{
               display: "flex",
@@ -103,12 +135,15 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
                   fontWeight: 400,
                   fontSize: "11px",
                   letterSpacing: "0.1em",
-                  color: "#707070",
+                  color: "#686868",
                   textDecoration: "none",
+                  minHeight: "44px",
+                  display: "inline-flex",
+                  alignItems: "center",
                   transition: "color 0.2s",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#111111")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#707070")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#686868")}
               >
                 {link.label}
               </a>
@@ -124,6 +159,7 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
                 color: "#111111",
                 border: "1px solid #111111",
                 padding: "8px 18px",
+                minHeight: "44px",
                 background: "transparent",
                 cursor: "pointer",
                 transition: "background 0.25s, color 0.25s",
@@ -141,18 +177,21 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
             </button>
           </nav>
 
-          {/* Mobile hamburger */}
           <button
+            ref={menuButtonRef}
+            type="button"
             onClick={() => setMenuOpen(!menuOpen)}
             style={{
               background: "none",
               border: "none",
               cursor: "pointer",
-              padding: "4px",
+              width: "44px",
+              height: "44px",
+              padding: "11px",
               display: "none",
             }}
             className="show-mobile"
-            aria-label="Меню"
+            aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
@@ -192,9 +231,12 @@ export default function Header({ onOpenBrief }: { onOpenBrief: () => void }) {
         </div>
       </header>
 
-      {/* Mobile menu */}
       <div
+        ref={menuRef}
         id="mobile-menu"
+        role="dialog"
+        aria-modal={menuOpen}
+        aria-label="Навигация"
         aria-hidden={!menuOpen}
         style={{
           position: "fixed",

@@ -1,7 +1,6 @@
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const links = [
-    { label: "GitHub" },
     { label: "Telegram", href: "https://t.me/LazerRising" },
     { label: "WhatsApp", href: "https://wa.me/77066834200" },
     { label: "Email", href: "mailto:kaatrr12150305@gmail.com" },
@@ -18,7 +17,6 @@ export default function Footer() {
       }}
     >
       <div className="site-container" style={{ maxWidth: "1440px", margin: "0 auto" }}>
-        {/* Top row */}
         <div
           className="footer-top"
           style={{
@@ -30,37 +28,30 @@ export default function Footer() {
           }}
         >
           <div className="footer-links" style={{ display: "flex", gap: "32px" }}>
-            {links.map((link) =>
-              link.href ? (
-                <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="footer-link">
-                  {link.label.toUpperCase()}
-                </a>
-              ) : (
-                <span key={link.label} className="footer-link footer-link--disabled">
-                  {link.label.toUpperCase()} · SOON
-                </span>
-              ),
-            )}
+            {links.map((link) => (
+              <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="footer-link">
+                {link.label.toUpperCase()}
+              </a>
+            ))}
           </div>
 
           <a
-            href="#"
+            href="#hero"
             style={{
               fontFamily: "'DM Mono', monospace",
               fontSize: "10px",
               letterSpacing: "0.14em",
-              color: "rgba(244,242,237,0.35)",
+              color: "#AAA8A3",
               textDecoration: "none",
               transition: "color 0.2s",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(244,242,237,0.8)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(244,242,237,0.35)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#AAA8A3")}
           >
             НАВЕРХ ↑
           </a>
         </div>
 
-        {/* Meta row */}
         <div
           className="footer-meta"
           style={{
@@ -71,12 +62,11 @@ export default function Footer() {
           }}
         >
           <span
-            className="footer-wordmark"
             style={{
               fontFamily: "'DM Mono', monospace",
               fontSize: "10px",
               letterSpacing: "0.14em",
-              color: "rgba(244,242,237,0.25)",
+              color: "#AAA8A3",
               fontWeight: 300,
             }}
           >
@@ -87,7 +77,7 @@ export default function Footer() {
               fontFamily: "'DM Mono', monospace",
               fontSize: "10px",
               letterSpacing: "0.14em",
-              color: "rgba(244,242,237,0.25)",
+              color: "#AAA8A3",
               fontWeight: 300,
             }}
           >
@@ -95,7 +85,6 @@ export default function Footer() {
           </span>
         </div>
 
-        {/* Large wordmark */}
         <div
           style={{
             overflow: "hidden",
@@ -110,7 +99,7 @@ export default function Footer() {
               fontSize: "clamp(80px, 17vw, 260px)",
               letterSpacing: "-0.04em",
               color: "transparent",
-              WebkitTextStroke: "1px rgba(244,242,237,0.08)",
+              WebkitTextStroke: "1px #77746F",
               lineHeight: 0.85,
               userSelect: "none",
               whiteSpace: "nowrap",

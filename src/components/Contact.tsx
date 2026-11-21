@@ -47,27 +47,15 @@ export default function Contact({ onOpenBrief }: { onOpenBrief: () => void }) {
 
           <div className="reveal reveal-delay-2">
             <div className="contact-list">
-              {contacts.map((contact) => {
-                const content = (
-                  <>
-                    <span className="contact-label">{contact.label.toUpperCase()}</span>
-                    <span className="contact-value">
-                      {contact.display}
-                      {contact.href && <span aria-hidden="true">↗</span>}
-                    </span>
-                  </>
-                );
-
-                return contact.href ? (
-                  <a key={contact.label} className="contact-row contact-row--link" href={contact.href} target="_blank" rel="noopener noreferrer">
-                    {content}
-                  </a>
-                ) : (
-                  <div key={contact.label} className="contact-row contact-row--disabled" aria-label={`${contact.label}: контакт будет добавлен`}>
-                    {content}
-                  </div>
-                );
-              })}
+              {contacts.map((contact) => (
+                <a key={contact.label} className="contact-row contact-row--link" href={contact.href} target="_blank" rel="noopener noreferrer">
+                  <span className="contact-label">{contact.label.toUpperCase()}</span>
+                  <span className="contact-value">
+                    {contact.display}
+                    <span aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              ))}
               <div className="contact-location">
                 <span>АСТАНА, КАЗАХСТАН</span>
                 <span>РАБОТАЮ УДАЛЁННО</span>
@@ -78,7 +66,7 @@ export default function Contact({ onOpenBrief }: { onOpenBrief: () => void }) {
 
         <div className="reveal reveal-delay-3" style={{ textAlign: "center" }}>
           <button type="button" className="contact-cta" onClick={onOpenBrief}>
-            ОБСУДИТЬ ПРОЕКТ <span aria-hidden="true">↗</span>
+            ОБСУДИТЬ ПРОЕКТ
           </button>
         </div>
       </div>

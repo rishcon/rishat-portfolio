@@ -58,8 +58,6 @@ export default function Stack() {
     return () => observer.disconnect();
   }, []);
 
-  const doubledItems = [...marqueeItems, ...marqueeItems];
-
   return (
     <section
       ref={ref}
@@ -69,43 +67,41 @@ export default function Stack() {
         overflow: "hidden",
       }}
     >
-      {/* Marquee strip */}
       <div
         style={{
           background: "#111111",
           padding: "18px 0",
           overflow: "hidden",
-          whiteSpace: "nowrap",
         }}
       >
         <div
-          className="marquee-track"
+          className="stack-strip"
           style={{
-            display: "inline-flex",
-            gap: "0",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "10px 24px",
+            padding: "0 20px",
           }}
         >
-          {doubledItems.map((item, i) => (
+          {marqueeItems.map((item) => (
             <span
-              key={i}
+              key={item}
               style={{
                 fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 letterSpacing: "0.18em",
                 color: "#F4F2ED",
                 fontWeight: 400,
-                paddingRight: "48px",
                 opacity: 0.7,
               }}
             >
               {item}
-              <span style={{ marginLeft: "48px", opacity: 0.3 }}>—</span>
             </span>
           ))}
         </div>
       </div>
 
-      {/* Main content */}
       <div
         className="site-container"
         style={{
@@ -130,11 +126,11 @@ export default function Stack() {
               fontFamily: "'DM Mono', monospace",
               fontSize: "11px",
               letterSpacing: "0.14em",
-              color: "#707070",
+              color: "#686868",
               fontWeight: 300,
             }}
           >
-            04 / STACK
+            03 / STACK
           </span>
           <h2
             className="reveal reveal-delay-1"
@@ -156,7 +152,6 @@ export default function Stack() {
           </h2>
         </div>
 
-        {/* Stack grid */}
         <div
           style={{
             display: "grid",
@@ -181,7 +176,7 @@ export default function Stack() {
                   fontFamily: "'DM Mono', monospace",
                   fontSize: "10px",
                   letterSpacing: "0.14em",
-                  color: "#707070",
+                  color: "#686868",
                   margin: "0 0 16px 0",
                   fontWeight: 300,
                 }}

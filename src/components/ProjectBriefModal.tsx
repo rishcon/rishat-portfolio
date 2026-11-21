@@ -112,7 +112,7 @@ export default function ProjectBriefModal({ open, onClose }: ProjectBriefModalPr
             <p className="brief-modal__eyebrow">ЗАЯВКА ОТПРАВЛЕНА</p>
             <h2 id={titleId}>СПАСИБО.</h2>
             <p>
-              Бриф отправлен!. Я изучу задачу и свяжусь с вами по указанному контакту.
+              Бриф отправлен. Я изучу задачу и свяжусь с вами по указанному контакту.
             </p>
             <button type="button" className="brief-modal__primary" onClick={onClose}>
               ПОНЯТНО
@@ -159,7 +159,7 @@ export default function ProjectBriefModal({ open, onClose }: ProjectBriefModalPr
                   {status === "error" ? errorMessage : "Данные отправляются напрямую в Telegram и не сохраняются на сайте."}
                 </p>
                 <button type="submit" className="brief-modal__primary" disabled={status === "sending"}>
-                  {status === "sending" ? "ОТПРАВЛЯЮ…" : "ОТПРАВИТЬ БРИФ ↗"}
+                  {status === "sending" ? "ОТПРАВЛЯЮ…" : "ОТПРАВИТЬ БРИФ"}
                 </button>
               </div>
             </form>

@@ -4,32 +4,32 @@ const capabilities = [
   {
     number: "01",
     title: "Сайты и лендинги",
-    description: "Premium marketing websites, company websites, product landing pages.",
+    description: "Корпоративные сайты и лендинги для услуг и продуктов.",
   },
   {
     number: "02",
     title: "Frontend",
-    description: "Responsive interfaces, React applications, dashboards.",
+    description: "Интерфейсы на React, адаптивная вёрстка и личные кабинеты.",
   },
   {
     number: "03",
     title: "Backend",
-    description: "API, databases, authentication, business logic.",
+    description: "API, базы данных, авторизация и серверная логика.",
   },
   {
     number: "04",
     title: "Интеграции",
-    description: "Third-party APIs, Telegram, external services.",
+    description: "Telegram, сторонние API и внешние сервисы.",
   },
   {
     number: "05",
     title: "AI & автоматизация",
-    description: "LLM APIs, AI tools, workflow automation.",
+    description: "LLM API, AI-инструменты и автоматизация рабочих процессов.",
   },
   {
     number: "06",
     title: "Поддержка",
-    description: "Development, deployment, updates and improvements.",
+    description: "Обновления, исправления и развитие проекта после запуска.",
   },
 ];
 
@@ -80,7 +80,7 @@ function CapabilityRow({
           fontFamily: "'DM Mono', monospace",
           fontSize: "11px",
           letterSpacing: "0.12em",
-          color: "#707070",
+          color: "#686868",
           fontWeight: 300,
         }}
       >
@@ -102,7 +102,7 @@ function CapabilityRow({
         style={{
           fontFamily: "'Manrope', sans-serif",
           fontSize: "clamp(12px, 1vw, 14px)",
-          color: "#707070",
+          color: "#686868",
           maxWidth: "300px",
           textAlign: "right",
           opacity: hovered ? 1 : 0,
@@ -162,11 +162,11 @@ export default function Capabilities() {
             fontFamily: "'DM Mono', monospace",
             fontSize: "11px",
             letterSpacing: "0.14em",
-            color: "#707070",
+            color: "#686868",
             fontWeight: 300,
           }}
         >
-          03 / ЧТО Я ДЕЛАЮ
+          02 / ЧТО Я ДЕЛАЮ
         </span>
         <h2
           className="reveal reveal-delay-1"

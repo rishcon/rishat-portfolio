@@ -16,6 +16,10 @@ export default function CustomCursor() {
       mouseY = e.clientY;
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        dotRef.current.style.opacity = "1";
+      }
+      if (ringRef.current && ringRef.current.style.opacity === "0") {
+        ringRef.current.style.opacity = "0.35";
       }
     };
 
@@ -30,39 +34,37 @@ export default function CustomCursor() {
       raf = requestAnimationFrame(animate);
     };
 
-    const onEnterLink = () => {
+    const setInteractiveState = (active: boolean) => {
       if (ringRef.current) {
-        ringRef.current.style.width = "56px";
-        ringRef.current.style.height = "56px";
+        ringRef.current.style.width = active ? "56px" : "36px";
+        ringRef.current.style.height = active ? "56px" : "36px";
         ringRef.current.style.borderColor = "#ffffff";
-        ringRef.current.style.opacity = "0.6";
+        ringRef.current.style.opacity = active ? "0.6" : "0.35";
       }
     };
 
-    const onLeaveLink = () => {
-      if (ringRef.current) {
-        ringRef.current.style.width = "36px";
-        ringRef.current.style.height = "36px";
-        ringRef.current.style.borderColor = "#ffffff";
-        ringRef.current.style.opacity = "0.35";
+    const onPointerOver = (event: PointerEvent) => {
+      if (event.target instanceof Element && event.target.closest("a, button, input, select, textarea")) {
+        setInteractiveState(true);
       }
+    };
+
+    const onPointerOut = (event: PointerEvent) => {
+      if (!(event.target instanceof Element)) return;
+      const control = event.target.closest("a, button, input, select, textarea");
+      if (!control || (event.relatedTarget instanceof Node && control.contains(event.relatedTarget))) return;
+      setInteractiveState(false);
     };
 
     document.addEventListener("mousemove", onMove);
+    document.addEventListener("pointerover", onPointerOver);
+    document.addEventListener("pointerout", onPointerOut);
     raf = requestAnimationFrame(animate);
-
-    const links = document.querySelectorAll("a, button");
-    links.forEach((el) => {
-      el.addEventListener("mouseenter", onEnterLink);
-      el.addEventListener("mouseleave", onLeaveLink);
-    });
 
     return () => {
       document.removeEventListener("mousemove", onMove);
-      links.forEach((el) => {
-        el.removeEventListener("mouseenter", onEnterLink);
-        el.removeEventListener("mouseleave", onLeaveLink);
-      });
+      document.removeEventListener("pointerover", onPointerOver);
+      document.removeEventListener("pointerout", onPointerOut);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -86,6 +88,7 @@ export default function CustomCursor() {
           marginLeft: "-2.5px",
           marginTop: "-2.5px",
           mixBlendMode: "difference",
+          opacity: 0,
         }}
       />
       <div
@@ -104,7 +107,7 @@ export default function CustomCursor() {
           transform: "translate(-50%, -50%)",
           marginLeft: "-18px",
           marginTop: "-18px",
-          opacity: 0.35,
+          opacity: 0,
           mixBlendMode: "difference",
           transition: "width 0.3s cubic-bezier(0.22,1,0.36,1), height 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.3s",
         }}
